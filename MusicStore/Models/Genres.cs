@@ -5,10 +5,9 @@ using System.Threading.Tasks;
 
 namespace MusicStore.Models
 {
-    public enum Genre
+    public class Genre
     {
-        Techno,
-        House,
-        Hiphop
+        public int GenreID { get; set; }
+        public string Name { get; set; }
     }
 }
