@@ -1,31 +1,29 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace MusicStore.Models
 {
     public class Album
     {
-        public Album(int albumID, string title, string cover, Artist artist, IEnumerable<Track> tracks, DateTime releaseDate, Genre genre, long sales)
+        public Album(string title, Cover cover, Artist artist, IEnumerable<Track> tracks, Genre genre, DateTime releaseDate)
         {
-            AlbumID = albumID;
-            Title = title ?? throw new ArgumentNullException(nameof(title));
-            Cover = cover ?? throw new ArgumentNullException(nameof(cover));
+            AlbumID = new Random().Next();
+            Title = title.ToUpper().Trim() ?? throw new ArgumentNullException(nameof(title));
+            Cover = cover;
             Artist = artist ?? throw new ArgumentNullException(nameof(artist));
             Tracks = tracks ?? throw new ArgumentNullException(nameof(tracks));
-            ReleaseDate = releaseDate;
             Genre = genre ?? throw new ArgumentNullException(nameof(genre));
-            Sales = sales;
+            ReleaseDate = releaseDate;
+            Sales = 0;
         }
 
-        public int AlbumID { get; set; }
+        private int AlbumID { get; }
         public string Title { get; set; }
         public string Cover { get; set; }
         public Artist Artist { get; set; }
         public IEnumerable<Track> Tracks { get; set; }
-        public DateTime ReleaseDate { get; set; }
         public Genre Genre { get; set; }
+        public DateTime ReleaseDate { get; set; }
         public long Sales { get; set; }
     }
 }

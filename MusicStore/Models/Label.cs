@@ -2,17 +2,15 @@
 
 namespace MusicStore.Models
 {
-    public class Artist
+    public class Label
     {
-        public Artist(string name)
+        public Label(string name)
         {
-            ArtistID = new Random().Next();
+            LabelID = new Random().Next();
             Name = name.ToUpper().Trim() ?? throw new ArgumentNullException(nameof(name));
-            Sales = 0;
         }
 
-        private int ArtistID { get; }
+        private int LabelID { get; }
         public string Name { get; set; }
-        public long Sales { get; set; }
     }
 }

@@ -1,11 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Builder;
+﻿using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.DependencyInjection;
+using MusicStore.Models.Repositories;
 
 namespace MusicStore
 {
@@ -14,6 +10,15 @@ namespace MusicStore
         // Add services to container
         public void ConfigureServices(IServiceCollection services)
         {
+            // Repositories
+            services.AddTransient<IAlbumRepository, FakeAlbumRepository>();
+            services.AddTransient<IArtistRepository, FakeArtistRepository>();
+            services.AddTransient<IGenreRepository, FakeGenreRepository>();
+            services.AddTransient<ILabelRepository, FakeLabelRepository>();
+            services.AddTransient<ITrackRepository, FakeTrackRepository>();
+            services.AddTransient<IVersionRepository, FakeVersionRepository>();
+
+            // Frameworks
             services.AddMvc();
         }
 
@@ -22,10 +27,12 @@ namespace MusicStore
         {
             app.UseDeveloperExceptionPage();
             app.UseStatusCodePages();
+
             app.UseStaticFiles();
+
             app.UseMvc(routes =>
             {
-
+                // TODO: Set default routing
             });
         }
     }
