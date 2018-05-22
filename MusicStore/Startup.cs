@@ -1,7 +1,8 @@
 ﻿using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.DependencyInjection;
-using MusicStore.Models.Repositories;
+using MusicStore.Repositories;
+using MusicStore.Repositories.Interfaces;
 
 namespace MusicStore
 {
@@ -11,12 +12,7 @@ namespace MusicStore
         public void ConfigureServices(IServiceCollection services)
         {
             // Repositories
-            services.AddTransient<IAlbumRepository, FakeAlbumRepository>();
-            services.AddTransient<IArtistRepository, FakeArtistRepository>();
-            services.AddTransient<IGenreRepository, FakeGenreRepository>();
-            services.AddTransient<ILabelRepository, FakeLabelRepository>();
-            services.AddTransient<ITrackRepository, FakeTrackRepository>();
-            services.AddTransient<IVersionRepository, FakeVersionRepository>();
+            services.AddTransient<ICustomerRepository, FakeCustomerRepository>();
 
             // Frameworks
             services.AddMvc();
@@ -27,9 +23,7 @@ namespace MusicStore
         {
             app.UseDeveloperExceptionPage();
             app.UseStatusCodePages();
-
             app.UseStaticFiles();
-
             app.UseMvc(routes =>
             {
                 // TODO: Set default routing
