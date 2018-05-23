@@ -46,6 +46,8 @@ namespace MusicStore
                     name: "default",
                     template: "{controller=Customer}/{action=List}/{id?}");
             });
+
+            Migrations.SeedData.Customers.EnsurePopulated(app);
         }
     }
 }
