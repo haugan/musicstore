@@ -5,7 +5,7 @@ using System.Linq;
 
 namespace MusicStore.Repositories
 {
-    public class FakeCustomerRepository : ICustomerRepository
+    public class CustomerRepositoryFake : ICustomerRepository
     {
         public IQueryable<Customer> Customers => new List<Customer>
         {

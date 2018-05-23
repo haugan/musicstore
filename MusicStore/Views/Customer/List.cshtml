@@ -1,0 +1,8 @@
+﻿@model  IEnumerable<MusicStore.Models.DTOs.Customer>
+
+@{ 
+    foreach (var customer in Model)
+    {
+        <p>@customer.Email (@customer.LastName, @customer.FirstName) - @customer.IPAddress</p>
+    }
+}
