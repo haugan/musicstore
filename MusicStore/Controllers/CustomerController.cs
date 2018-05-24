@@ -1,12 +1,14 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using MusicStore.Repositories.Interfaces;
 using System;
+using System.Linq;
 
 namespace MusicStore.Controllers
 {
     public class CustomerController : Controller
     {
-        private readonly ICustomerRepository customerRepository;
+        private ICustomerRepository customerRepository;
+        public int pageSize = 5;
 
         public CustomerController(ICustomerRepository customerRepository)
         {
@@ -16,12 +18,34 @@ namespace MusicStore.Controllers
             this.customerRepository = customerRepository ?? throw new ArgumentNullException(nameof(CustomerController));
         }
 
-        public ViewResult List()
+        public ViewResult List(int page = 1)
         {
-            Console.WriteLine("debug: Returning list of Customers..");
 
-            ViewBag.Title = "Customer list";
-            return View(customerRepository.Customers);
+            ViewBag.Title = $"Customer list (page {page})";
+
+            var customers = customerRepository
+                .Customers
+                .OrderBy(c => c.CustomerID)
+                .Skip((page - 1) * pageSize)
+                .Take(pageSize);
+
+            var pageInfo = new Models.ViewModels.PageInfo
+            {
+                CurrentPage = page,
+                ItemsOnPage = pageSize,
+                ItemsInTotal = customerRepository.Customers.Count()
+            };
+
+            Console.WriteLine($"debug: Returning list of '{customers.Count()}' Customer(s)..");
+            Console.WriteLine($"debug: Total number of Customers are '{pageInfo.ItemsInTotal}'");
+
+            var customerList = new Models.ViewModels.CustomerList
+            {
+                Customers = customers,
+                PageInfo = pageInfo
+            };
+
+            return View(customerList);
         }
     }
 }

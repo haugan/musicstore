@@ -43,6 +43,11 @@ namespace MusicStore
             app.UseMvc(routes =>
             {
                 routes.MapRoute(
+                    name: "pagination",
+                    template: "Customers/Page{page}",
+                    defaults: new { Controller = "Customer", Action ="List" });
+
+                routes.MapRoute(
                     name: "default",
                     template: "{controller=Customer}/{action=List}/{id?}");
             });
