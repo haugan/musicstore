@@ -3,41 +3,39 @@
 <br />
 
 <div class="container">
-    <div class="card">
-        <div class="card-header">
-            <h2 class="card-title">Registered customers</h2>
-        </div>
-        <div class="card-body">
-            
-            <table class="table table-dark">
-                <tr>
-                    <th scope="col">ID</th>
-                    <th scope="col">GENDER</th>
-                    <th scope="col">NAME</th>
-                    <th scope="col">EMAIL</th>
-                    <th scope="col">IP</th>
-                </tr>
-                @{
-                    foreach (var customer in Model.Customers)
-                    {
-                        <tr>
-                            <th scope="row">@customer.CustomerID</th>
-                            <td>@customer.Gender</td>
-                            <td>@customer.FirstName @customer.LastName</td>
-                            <td>@customer.Email</td>
-                            <td>@customer.IPAddress</td>
-                        </tr>
-                    }
+    <h2 class="card-title">Customers</h2>
+    <table class="table table-sm table-bordered table-hover">
+        <caption>List of registered customers</caption>
+        <thead class="thead-light">
+            <tr>
+                <th scope="col">ID</th>
+                <th scope="col">GENDER</th>
+                <th scope="col">NAME</th>
+                <th scope="col">EMAIL</th>
+                <th scope="col">IP</th>
+            </tr>
+        </thead>
+        <tbody>
+            @{
+                foreach (var customer in Model.Customers)
+                {
+                    <tr>
+                        <th scope="row">@customer.CustomerID</th>
+                        <td>@customer.Gender</td>
+                        <td>@customer.FirstName @customer.LastName</td>
+                        <td>@customer.Email</td>
+                        <td>@customer.IPAddress</td>
+                    </tr>
                 }
-            </table>
-            <div page-model="@Model.PageInfo"
-                 page-action="List"
-                 page-classes-enabled="true"
-                 page-class="btn"
-                 page-class-normal="btn-light"
-                 page-class-selected="btn-dark"
-                 class="btn-group pull-right m-1">
-            </div>
-        </div>
+            }
+        </tbody>
+    </table>
+    <div page-model="@Model.PageInfo"
+         page-action="List"
+         page-classes-enabled="true"
+         page-class="btn"
+         page-class-normal="btn-light"
+         page-class-selected="btn-dark"
+         class="btn-group pull-right m-1">
     </div>
 </div>
