@@ -13,15 +13,12 @@ namespace MusicStore.Controllers
 
         public CustomerController(ICustomerRepository customerRepository)
         {
-            Console.WriteLine("debug: Constructing Customer controller..");
-            Console.WriteLine("debug: Injecting registered dependencies..");
-
+            Console.WriteLine("debug: Constructing Customer controller (injecting registered dependencies..");
             this.customerRepository = customerRepository ?? throw new ArgumentNullException(nameof(CustomerController));
         }
 
         public ViewResult List(int page = 1)
         {
-
             ViewBag.Title = $"Customer list (page {page})";
 
             var customers = customerRepository

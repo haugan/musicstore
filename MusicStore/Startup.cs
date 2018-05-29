@@ -23,10 +23,10 @@ namespace MusicStore
         {
             Console.WriteLine("debug: Adding services to container..");
 
-            // Database contexts
+            // Database contexts (configuration set in appsettings.json)
             svc.AddDbContext<ApplicationDbContext>(opt => opt.UseSqlServer(Config["Data:MusicStoreCustomers:ConnectionString"]));
 
-            // Repositories
+            // Repositories (created when calling contructors that depend on these interfaces)
             svc.AddTransient<ICustomerRepository, CustomerRepositoryEF>();
             svc.AddTransient<IProductRepository, ProductRepositoryFake>();
 
@@ -45,7 +45,7 @@ namespace MusicStore
             {
                 routes.MapRoute(
                     name: "pagination",
-                    template: "Customers/Page{page}",
+                    template: "Customer/Page{page}",
                     defaults: new { Controller = "Customer", Action ="List" });
 
                 routes.MapRoute(

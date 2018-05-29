@@ -1,0 +1,11 @@
+﻿@model IEnumerable<MusicStore.Models.DTOs.Product>
+@{ 
+    foreach (var p in Model)
+    {
+        <div>
+            <p>@p.Name</p>
+            <p>@p.Description</p>
+            <p>@p.Price.ToString("c")</p>
+        </div>
+    }
+}
