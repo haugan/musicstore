@@ -28,6 +28,7 @@ namespace MusicStore
 
             // Repositories
             svc.AddTransient<ICustomerRepository, CustomerRepositoryEF>();
+            svc.AddTransient<IProductRepository, ProductRepositoryFake>();
 
             // Frameworks
             svc.AddMvc();

@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using MusicStore.Models.ViewModels;
 using MusicStore.Repositories.Interfaces;
 using System;
 using System.Linq;
@@ -29,7 +30,7 @@ namespace MusicStore.Controllers
                 .Skip((page - 1) * pageSize)
                 .Take(pageSize);
 
-            var pageInfo = new Models.ViewModels.PageInfo
+            var pageInfo = new PageInfo
             {
                 CurrentPage = page,
                 ItemsOnPage = pageSize,
@@ -39,7 +40,7 @@ namespace MusicStore.Controllers
             Console.WriteLine($"debug: Returning list of '{customers.Count()}' Customer(s)..");
             Console.WriteLine($"debug: Total number of Customers are '{pageInfo.ItemsInTotal}'");
 
-            var customerList = new Models.ViewModels.CustomerList
+            var customerList = new CustomerList
             {
                 Customers = customers,
                 PageInfo = pageInfo

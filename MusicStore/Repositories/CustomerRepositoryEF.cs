@@ -1,4 +1,5 @@
 ﻿using MusicStore.Contexts;
+using MusicStore.Models.DTOs;
 using MusicStore.Repositories.Interfaces;
 using System;
 using System.Linq;
@@ -16,6 +17,6 @@ namespace MusicStore.Repositories
             this.context = context ?? throw new ArgumentNullException(nameof(context));
         }
 
-        public IQueryable<Models.DTOs.Customer> Customers => context.Customers;
+        public IQueryable<Customer> Customers => context.Customers;
     }
 }
