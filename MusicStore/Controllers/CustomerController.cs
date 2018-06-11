@@ -9,13 +9,14 @@ namespace MusicStore.Controllers
     public class CustomerController : Controller
     {
         private ICustomerRepository customerRepository;
-        public int pageSize = 5;
 
         public CustomerController(ICustomerRepository customerRepository)
         {
             Console.WriteLine("debug: Constructing Customer controller (injecting registered dependencies..");
             this.customerRepository = customerRepository ?? throw new ArgumentNullException(nameof(CustomerController));
         }
+
+        public int PageSize { get; set; } = 5;
 
         public ViewResult List(int page = 1)
         {
@@ -24,13 +25,13 @@ namespace MusicStore.Controllers
             var customers = customerRepository
                 .Customers
                 .OrderBy(c => c.CustomerID)
-                .Skip((page - 1) * pageSize)
-                .Take(pageSize);
+                .Skip((page - 1) * PageSize)
+                .Take(PageSize);
 
             var pageInfo = new PageInfo
             {
                 CurrentPage = page,
-                ItemsOnPage = pageSize,
+                ItemsOnPage = PageSize,
                 ItemsInTotal = customerRepository.Customers.Count()
             };
 
