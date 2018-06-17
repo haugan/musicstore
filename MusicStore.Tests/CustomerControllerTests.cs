@@ -38,8 +38,8 @@ namespace MusicStore.Tests
             var customers = result.Customers.ToArray();
 
             // Assert: 
-            // If pagination works, the 2nd page of customers should contain a given # of items by set page size.
-            // The items should be the 2nd and 4th from the mock list, and match on values (e.g. IDs).
+            // If pagination works, the 2nd page of customers should contain a given # of objects by set page size.
+            // The objects should be the 2nd and 4th items from the mock list, and match on values (e.g. IDs).
             Assert.True(customers.Length == controller.PageSize);
             Assert.Equal(3, customers[0].CustomerID);
             Assert.Equal(4, customers[1].CustomerID);
