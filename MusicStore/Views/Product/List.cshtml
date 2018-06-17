@@ -1,5 +1,7 @@
-﻿@model IEnumerable<MusicStore.Models.DTOs.Product>
-@{ 
+﻿@using MusicStore.Models.DTOs;
+
+@model IEnumerable<Product>
+@{
     foreach (var p in Model)
     {
         <div>
